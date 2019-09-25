@@ -12,3 +12,6 @@
 |name|string|null: false|
 |e_mail|string|null: false|
 |password|string|null: false|
+#### Association
+* has_many :messages
+* has_many :rooms, through: :users_rooms
