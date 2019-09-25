@@ -31,8 +31,8 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false|
-|image|string|null: false|
+|text|text|null: true|
+|image|string|null: true|
 |user_id|references|null: false, foreign_key: true|
 |room_id|references|null: false, foreign_key: true|
 * 送信日時はcreated_at(タイムスタンプ型)を使う
