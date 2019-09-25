@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Rails version
+5.0.7.2
 
-Things you may want to cover:
+## DataBaseの設計
 
-* Ruby version
+### usersテーブル
 
-* System dependencies
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false, index: true|
+|mail|string|null: false|
+|password|string|null: false|
+#### Association
+* has_many :users_rooms
+* has_many :messages
+* has_many :rooms, through: :users_rooms
 
-* Configuration
+### roomsテーブル
 
-* Database creation
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+#### Association
+* has_many :users_rooms
+* has_many :messages
+* has_many :users, through: :users_rooms
 
-* Database initialization
+### messagesテーブル
 
-* How to run the test suite
+|Column|Type|Options|
+|------|----|-------|
+|text|text||
+|image|string||
+|user_id|references|null: false, foreign_key: true|
+|room_id|references|null: false, foreign_key: true|
+* 送信日時はcreated_at(タイムスタンプ型)を使う
+#### Associaion
+* belongs_to :user
+* belongs_to :room
 
-* Services (job queues, cache servers, search engines, etc.)
+### users_roomsテーブル
 
-* Deployment instructions
-
-* ...
+Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|room_id|references|null: false, foreign_key: true|
+#### Association
+* belongs_to :user
+* belongs_to :room
