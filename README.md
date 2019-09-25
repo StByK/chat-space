@@ -15,3 +15,13 @@
 #### Association
 * has_many :messages
 * has_many :rooms, through: :users_rooms
+
+### roomsテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|room_name|string|null: false|
+|user_id|references|null: false, foreign_key: true|
+#### Association
+* has_many :messages
+* has_many :users through: :users_rooms
