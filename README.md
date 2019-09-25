@@ -23,6 +23,7 @@
 |------|----|-------|
 |name|string|null: false|
 #### Association
+* belongs_to :users_rooms
 * has_many :messages
 * has_many :users through: :users_rooms
 
