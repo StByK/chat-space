@@ -25,3 +25,17 @@
 #### Association
 * has_many :messages
 * has_many :users through: :users_rooms
+
+### messagesテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|image|string|null: false|
+|user_id|references|null: false, foreign_key: true|
+|room_id|references|null: false, foreign_key: true|
+* 送信日時はcreated_at(タイムスタンプ型)を使う
+#### Associaion
+* belongs_to :users
+* belongs_to :rooms
+
