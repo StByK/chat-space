@@ -1,16 +1,16 @@
 # README
 
-## ruby version
+## Rails version
 5.0.7.2
 
-## About DataBase
+## DataBaseの設計
 
 ### usersテーブル
 
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|e_mail|string|null: false|
+|mail|string|null: false|
 |password|string|null: false|
 #### Association
 * has_many :messages
@@ -46,5 +46,5 @@ Column|Type|Options|
 |user_id|references|null: false, foreign_key: true|
 |room_id|references|null: false, foreign_key: true|
 #### Association
-* belongs_to :users
-* belongs_to :rooms
+* belongs_to :user
+* belongs_to :room
