@@ -37,8 +37,8 @@
 |room_id|references|null: false, foreign_key: true|
 * 送信日時はcreated_at(タイムスタンプ型)を使う
 #### Associaion
-* belongs_to :users
-* belongs_to :rooms
+* belongs_to :user
+* belongs_to :room
 
 ### users_roomsテーブル
 
