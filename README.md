@@ -22,7 +22,6 @@
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|user_id|references|null: false, foreign_key: true|
 #### Association
 * has_many :messages
 * has_many :users through: :users_rooms
