@@ -13,6 +13,7 @@
 |mail|string|null: false|
 |password|string|null: false|
 #### Association
+* belongs_to :users_rooms
 * has_many :messages
 * has_many :rooms, through: :users_rooms
 
