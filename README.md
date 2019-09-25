@@ -9,7 +9,7 @@
 
 |Column|Type|Options|
 |------|----|-------|
-|name|string|null: false|
+|name|string|null: false, index: true|
 |mail|string|null: false|
 |password|string|null: false|
 #### Association
