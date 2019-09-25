@@ -39,3 +39,12 @@
 * belongs_to :users
 * belongs_to :rooms
 
+### users_roomsテーブル
+
+Column|Type|Options|
+|------|----|-------|
+|user_id|references|null: false, foreign_key: true|
+|room_id|references|null: false, foreign_key: true|
+#### Association
+* belongs_to :users
+* belongs_to :rooms
