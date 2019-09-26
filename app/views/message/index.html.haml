@@ -4,9 +4,15 @@
     .left-contents
       .left__header
         .left-header__name
+        sample
         .left-header__icon
+        = link_to "", class: "icon__btn" do
+          = fa_icon "facebook-f", class: "icon__btn--new"
+        = link_to "", class: "icon__btn-new" do
+          = fa_icon "facebook-f", class: "icon__btn--edit"
       .left__list
         .left-list__item
+        = render 'message/template_room'
     .main-contents
       .main__header
         .header__info
@@ -15,6 +21,7 @@
         .header__btn
       .main__messages
         .messages__item
+        = render 'message/template_message'
       .main__form
         .form__message
         .form__btn
