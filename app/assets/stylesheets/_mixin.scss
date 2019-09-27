@@ -1,0 +1,7 @@
+@mixin linkcontent($color: #ffffff, $cursor: pointer) {
+  color: $color;
+  cursor: $cursor;
+  &:visited {
+    color: $color;
+  }
+}
