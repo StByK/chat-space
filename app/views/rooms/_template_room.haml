@@ -1,0 +1,9 @@
+!!!
+%html
+  %body
+    - current_user.rooms.each do |room|
+      = link_to '#' do 
+        .room-name
+          = room.name
+        .room-info
+          no message
