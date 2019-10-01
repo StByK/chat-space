@@ -1,0 +1,40 @@
+!!!
+%html
+  %body
+    .left-contents
+      .left__header
+        .left-header__name
+          %p
+            = current_user.name
+        %ul.left-header__iconlist
+          %li.list__icon<>
+            = link_to new_room_path, class: "icon-new" do
+              = fa_icon "edit", class: "icon__new--btn"
+          %li.list__icon<>
+            = link_to edit_user_path(current_user), class: "icon-edit" do
+              = fa_icon "cog", class: "icon__btn--edit"
+      .left__list
+        .left-list__item
+          = render partial: 'rooms/template_room'
+    .main-contents
+      .main__header
+        .header__info
+          .info__name
+            %p
+              sample部屋
+          .info__memberlist
+            %p
+              sampleさん
+        .header__btn
+          = link_to "Edit", "" , class: "edit-btn"
+      .main__messages
+        .message__item
+          = render partial: 'template_message', collection: @messages, as: "message"
+      .main__form
+        = form_for [@room, @message], html: {class: 'form__box'} do |f|
+          .input__box
+            = f.text_field :text, placeholder: "type a text", class: "message__form"
+            = f.label :image, class: "form__upload" do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, id: "message_image"
+          = f.submit value: "Send", class: "send__btn"
