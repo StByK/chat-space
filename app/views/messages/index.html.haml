@@ -21,10 +21,11 @@
         .header__info
           .info__name
             %p
-              sample部屋
+              = @room.name
           .info__memberlist
             %p
-              sampleさん
+              - @members.each do |member|
+                = member.name
         .header__btn
           = link_to "Edit", "" , class: "edit-btn"
       .main__messages

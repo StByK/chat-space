@@ -14,7 +14,7 @@ class MessagesController < ApplicationController
       @messages = @room.messages.includes(:user)
       flash.now[:alert] = 'メッセージを入力してください'
       render :index
-    end
+    end 
   end
 
   private
@@ -25,6 +25,7 @@ class MessagesController < ApplicationController
 
   def set_room
     @room = Room.find(params[:room_id])
+    @members = @room.users
   end
 
 end
