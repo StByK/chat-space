@@ -16,25 +16,3 @@
       .left__list
         .left-list__item
           = render 'rooms/template_room'
-    .main-contents
-      .main__header
-        .header__info
-          .info__name
-            %p
-              sample部屋
-          .info__memberlist
-            %p
-              sampleさん
-        .header__btn
-          = link_to "Edit", "" , class: "edit-btn"
-      .main__messages
-        .message__item
-          = render 'message/template_message'
-      .main__form
-        = form_for "", html: {class: :form__box}, method: :post do |f|
-          .input__box
-            = f.text_field :text, :placeholder => "type a text", :class => "message__form"
-            %label.upload-label{for: "upload-btn", :class => "form__upload"}
-              %i.fa.fa-picture-o
-              = f.file_field :image, :id =>"upload-btn"
-          = f.submit :value => "Send", :class => "send__btn"

@@ -2,8 +2,8 @@
 %html
   %body
     - current_user.rooms.each do |room|
-      = link_to '#' do 
+      = link_to "/rooms/#{room.id}/messages" do 
         .room-name
           = room.name
         .room-info
-          no message
+          = room.show_last_message

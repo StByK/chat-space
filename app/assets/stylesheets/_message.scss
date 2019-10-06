@@ -91,6 +91,7 @@ body{
     height: calc(100vh - 190px);
     padding: $right-padding;
     background-color: #fafafa;
+    overflow: scroll;
       .message__item{
         padding: 46px 0 40px 0;
       }
@@ -125,7 +126,7 @@ body{
           cursor: pointer;
           
         }
-          #upload-btn{
+          #message_image{
             display: none;
           }
       .send__btn{
