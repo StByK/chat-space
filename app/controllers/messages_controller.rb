@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
   end
 
   def create
+    binding.pry
     @message = @room.messages.new(message_params)
     if @message.save
       redirect_to room_messages_path(@room), notice: 'メッセージが送信されました'
