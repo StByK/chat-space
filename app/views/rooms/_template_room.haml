@@ -1,9 +1,6 @@
-!!!
-%html
-  %body
-    - current_user.rooms.each do |room|
-      = link_to "/rooms/#{room.id}/messages" do 
-        .room-name
-          = room.name
-        .room-info
-          = room.show_last_message
+- current_user.rooms.each do |room|
+  = link_to "/rooms/#{room.id}/messages" do 
+    .room-name
+      = room.name
+    .room-info
+      = room.show_last_message
