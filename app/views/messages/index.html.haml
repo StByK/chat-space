@@ -27,7 +27,7 @@
               - @members.each do |member|
                 = member.name
         .header__btn
-          = link_to "Edit", "" , class: "edit-btn"
+          = link_to "Edit", edit_room_path(@room), class: "edit-btn"
       .main__messages
         .message__item
           = render partial: 'template_message', collection: @messages, as: "message"
