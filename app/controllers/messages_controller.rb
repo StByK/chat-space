@@ -7,14 +7,11 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = @room.messages.new(message_params)
-    if @message.save
-      redirect_to room_messages_path(@room), notice: 'メッセージが送信されました'
-    else
-      @messages = @room.messages.includes(:user)
-      flash.now[:alert] = 'メッセージを入力してください'
-      render :index
-    end 
+    @message = @room.messages.create(message_params)
+    respond_to do |format|
+      format.html {redirect_to room_messages_path(@room)}
+      format.json
+    end
   end
 
   private
