@@ -1,5 +1,5 @@
 - current_user.rooms.each do |room|
-  = link_to "/rooms/#{room.id}/messages" do 
+  = link_to room_messages_path(room) do
     .room-name
       = room.name
     .room-info
