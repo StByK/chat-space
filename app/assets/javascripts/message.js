@@ -17,23 +17,31 @@ $(function() {
     e.preventDefault();
     var formData = new FormData(this);
     var url = $(this).attr('action')
+    var interceptFlag = 0;
     $('.send__btn').removeAttr('data-disable-with');
-    $.ajax({
-      type: 'POST',
-      url: url,
-      data: formData,
-      dataType: 'json',
-      processData: false,
-      contentType: false
-    })
-    .done(function(data){
-      var html = buildHTML(data);
-      $('.message__item').append(html)
-      $('.message__form').val('')
-      $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
-    })
-    .fail(function() {
-      alert('投稿できませんでした')
-    });
+      if(interceptFlag == 0){
+        interceptFlag == 1;
+        $.ajax({
+          type: 'POST',
+          url: url,
+          data: formData,
+          dataType: 'json',
+          processData: false,
+          contentType: false
+        })
+        .done(function(data){
+          var html = buildHTML(data);
+          setTimeout(function() {
+            $('.message__item').append(html)
+            $('.message__form').val('')
+            $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
+            interceptFlag == 0;
+          }, 500);
+        })
+        .fail(function() {
+          alert('投稿できませんでした')
+          interceptFlag == 0;
+        });
+      }
   })
 });
