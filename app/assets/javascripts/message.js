@@ -32,8 +32,8 @@ $(function() {
         .done(function(data){
           var html = buildHTML(data);
           setTimeout(function() {
-            $('.message__item').append(html)
-            $('.message__form').val('')
+            $('.message__item').append(html);
+            $('#new_message')[0].reset();
             $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
             interceptFlag == 0;
           }, 500);
