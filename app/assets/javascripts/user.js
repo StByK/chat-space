@@ -26,7 +26,7 @@ $(function() {
     })
     .done(function(users) {
       $("#user-search-result").empty();
-      if (users.length !== 0) {
+      if (input.length !== 0) {
         users.forEach(function(user){
           appendUser(user);
         });
@@ -35,5 +35,12 @@ $(function() {
         appendErrMsgToHTML("一致するユーザはいません");
       }
     })
+    .fail(function(){ 
+      alertt('検索中にエラーが発生しました');
+    })
+  });
+
+  $('.user-search-result').on("click", "chat-group-user__btn--add", function() {
+    console.log(ok)
   });
 });
