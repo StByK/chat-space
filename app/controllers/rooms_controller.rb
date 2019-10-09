@@ -22,8 +22,9 @@ def edit
 end
 
 def update
-  Room.update(create_params)
-  if Room.update(create_params)
+  @room = Room.find(params[:id])
+  @room.update(create_params)
+  if @room.update(create_params)
     redirect_to root_path, notice: "グループ情報を編集しました"
   else
     render :edit

@@ -1,11 +1,11 @@
 .chat-group-form
   %h1 チャットグループ編集
-  = form_for @room, method: :patch do |f|
+  = form_for @room do |f|
     - if @room.errors.any?
       .chat-group-form__errors
         %h2= "#{@room.errors.full_message.count}件のエラーが発生しました"
         %ul
-          - @group.errors.full_massege.each do |message|
+          - @room.errors.full_massege.each do |message|
             %li message
     .chat-group-form__field
       .chat-group-form__field--left
@@ -24,10 +24,14 @@
     .chat-group-form__field
       .chat-group-form__field--left
         %label.chat-group-form__label チャットメンバー
-      .chat-group-form__field--right
+      .chat-group-form__field--right.member__list
         / グループ作成機能の追加時はここにcollection_check_boxesの記述を入れてください
-        = f.collection_check_boxes :user_ids, User.all, :id, :name
         / この部分はインクリメンタルサーチ(ユーザー追加の非同期化)のときにも使用します
+        - @room.users.each do |user|
+          .chat-group-user
+            %input{:name => "room[user_ids][]", :type => "hidden", :value=> "#{user.id}"}/
+            = user.name
+            %a.user-search-remove.chat-group-user__btn.chat-group-user__btn--remove.js-remove-btn 削除
     .chat-group-form__field
       .chat-group-form__field--left
       .chat-group-form__field--right
