@@ -56,7 +56,6 @@ $(function() {
     var id = $(this).data('user-id');
     appendMember(user, id);
     $(this).parent().remove()
-    $('#chat-group-users').append(html);
     })
 
   $('.member__list').on("click", ".chat-group-user__btn--remove", function() {
