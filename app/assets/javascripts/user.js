@@ -10,10 +10,10 @@ $(function() {
     search_list.append(resultHtml)
   }
 
-  function appendMember(user) {
-    var memberHtml = `<div class='chat-group-user' '${user.id}'>
-                <input name='room[user_ids][]' type='hidden' value=${user.id}>
-                <p class='chat-group-user__name'>${user.name}</p>
+  function appendMember(user,id) {
+    var memberHtml = `<div class='chat-group-user' '${id}'>
+                <input name='room[user_ids][]' type='hidden' value=${id}>
+                <p class='chat-group-user__name'>${user}</p>
                 <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
                 </div>`
     $('.member__list').append(memberHtml)
@@ -52,24 +52,12 @@ $(function() {
   });
 
   $('#user-search-result').on("click", ".chat-group-user__btn--add", function() {
-    var user_id = $(this).attr('data-user-id');
-    var user_name = $(this).attr('data-user-name');
+    var user = $(this).prev().text();
+    var id = $(this).data('user-id');
+    appendMember(user, id);
     $(this).parent().remove()
-    $.ajax({
-      type: 'GET',
-      url: '/users',
-      data: {word: user_name},
-      dataType: 'json'
+    $('#chat-group-users').append(html);
     })
-    .done(function(users) {
-      users.forEach(function(user){
-        appendMember(user);
-      })
-    })
-    .fail(function(){
-      alert('エラーが発生しました');
-    })
-  });
 
   $('.member__list').on("click", ".chat-group-user__btn--remove", function() {
     $(this).parent().remove()
