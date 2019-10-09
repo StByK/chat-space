@@ -11,8 +11,7 @@ def new
 end
 
 def create
-  Room.create(create_params)
-  if Room.create
+  if Room.create(create_params)
     redirect_to root_path, notice: 'グループを作成しました'
   else
     render :new
