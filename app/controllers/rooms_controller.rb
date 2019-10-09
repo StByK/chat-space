@@ -23,7 +23,6 @@ def edit
 end
 
 def update
-  @room.update(create_params)
   if @room.update(create_params)
     redirect_to root_path, notice: "グループ情報を編集しました"
   else
