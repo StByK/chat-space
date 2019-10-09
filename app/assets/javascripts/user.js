@@ -66,9 +66,12 @@ $(function() {
         appendMember(user);
       })
     })
+    .fail(function(){
+      alert('エラーが発生しました');
+    })
   });
 
-  $('.chat-group-user').on("click", ".chat-group-user__btn--remove", function() {
+  $('.member__list').on("click", ".chat-group-user__btn--remove", function() {
     $(this).parent().remove()
   });
 });
