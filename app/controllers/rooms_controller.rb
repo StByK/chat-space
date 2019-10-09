@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
 
+  before_action :set_room, only: [:edit, :update]
+
 def index
 end
 
@@ -18,11 +20,9 @@ def create
 end
 
 def edit
-  @room = Room.find(params[:id])
 end
 
 def update
-  @room = Room.find(params[:id])
   @room.update(create_params)
   if @room.update(create_params)
     redirect_to root_path, notice: "グループ情報を編集しました"
@@ -35,6 +35,10 @@ private
 
 def create_params
   params.require(:room).permit(:name, {:user_ids => []})
+end
+
+def set_room
+  @room = Room.find(params[:id])
 end
 
 end
