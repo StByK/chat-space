@@ -52,7 +52,7 @@ $(function() {
   });
 
   $('#user-search-result').on("click", ".chat-group-user__btn--add", function() {
-    var user = $(this).prev().text();
+    var user = $(this).data('user-name');
     var id = $(this).data('user-id');
     appendMember(user, id);
     $(this).parent().remove()
