@@ -48,28 +48,31 @@ $(function() {
   })
 
   var reloadMessages = function() {
+    
     var current_message_id = $('.message__content:last').data('id');
-    var room_id = $('.main-contents').data('id')
-    var url = `/rooms/${room_id}/api/messages`
-    $.ajax({
-      type: 'GET',
-      url: url,
-      data: {id: current_message_id},
-      dataType: 'json'
-    })
-    .done(function(data) {
-      var insertHTML = '';
+      var room_id = $('.main-contents').data('id')
+      var url = `/rooms/${room_id}/api/messages`
+      $.ajax({
+        type: 'GET',
+        url: url,
+        data: {id: current_message_id},
+        dataType: 'json'
+      })
+      .done(function(data) {
+        var insertHTML = '';
         data.forEach(function(data) {
-          insertHTML = buildHTML(data);
-          $('.message__item').append(insertHTML);
-          $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
-
+            insertHTML = buildHTML(data);
+            $('.message__item').append(insertHTML);
+            $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
+            
+        });
       });
-    });
-  }
-
-$(function() {
-  setInterval(reloadMessages, 5000);
-});
+    };
+    
+  if (window.location.href.match(/\/rooms\/\d+\/messages/)) {
+  $(function() {
+    setInterval(reloadMessages, 5000);
+  });
+    }
 
 });
