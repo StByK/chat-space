@@ -4,14 +4,16 @@ $(function() {
   function buildHTML(message) {
     var image = ""
     message.image ? image = `<img src="${message.image}">` : image = ""
-    var html = `<div class="message-sender">${message.name}</div>
-    <div class="message-date">${message.time}</div>
-    <div class="message-text">
-    <p>${message.text}</p>
-    ${image}
-    </div>`
+    var html = `<div class="message__content" data-id="${message.id}">
+                  <div class="message-sender">${message.name}</div>
+                  <div class="message-date">${message.time}</div>
+                  <div class="message-text">
+                  <p>${message.text}</p>
+                  ${image}
+                </div>`
     return html;
   }
+
   
   $('.form__box').submit(function(e) {
     e.preventDefault();
@@ -44,4 +46,33 @@ $(function() {
         });
       }
   })
+
+  var reloadMessages = function() {
+    
+    var current_message_id = $('.message__content:last').data('id');
+      var room_id = $('.main-contents').data('id')
+      var url = `/rooms/${room_id}/api/messages`
+      $.ajax({
+        type: 'GET',
+        url: url,
+        data: {id: current_message_id},
+        dataType: 'json'
+      })
+      .done(function(data) {
+        var insertHTML = '';
+        data.forEach(function(data) {
+            insertHTML = buildHTML(data);
+            $('.message__item').append(insertHTML);
+            $('.main__messages').animate({scrollTop: $('.main__messages')[0].scrollHeight}, 'fast');
+            
+        });
+      });
+    };
+    
+  if (window.location.href.match(/\/rooms\/\d+\/messages/)) {
+  $(function() {
+    setInterval(reloadMessages, 5000);
+  });
+    }
+
 });
