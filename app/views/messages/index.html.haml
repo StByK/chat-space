@@ -16,7 +16,7 @@
       .left__list
         .left-list__item
           = render partial: 'rooms/template_room'
-    .main-contents
+    .main-contents{data: {id: "#{@room.id}"}}
       .main__header
         .header__info
           .info__name
