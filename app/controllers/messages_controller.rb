@@ -11,6 +11,7 @@ class MessagesController < ApplicationController
     respond_to do |format|
       format.html {redirect_to room_messages_path(@room)}
       format.json
+    render action: :index and return unless @message.save
     end
   end
 
