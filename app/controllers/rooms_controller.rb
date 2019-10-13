@@ -19,6 +19,7 @@ def create
 end
 
 def edit
+  @members = @room.users.where.not(id: current_user.id)
 end
 
 def update

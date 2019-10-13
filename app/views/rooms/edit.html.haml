@@ -23,7 +23,10 @@
       .chat-group-form__field--left
         %label.chat-group-form__label チャットメンバー
       .chat-group-form__field--right.member__list
-        - @room.users.each do |user|
+        .chat-group-user
+          %input{name: "room[user_ids][]", type: "hidden", value: current_user.id}/
+          = current_user.name
+        - @members.each do |user|
           .chat-group-user
             %input{name: "room[user_ids][]", type: "hidden", value: "#{user.id}"}/
             = user.name
